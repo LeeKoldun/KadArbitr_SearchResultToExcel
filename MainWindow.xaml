@@ -1,0 +1,47 @@
+﻿<Window x:Class="KadArbitr_SearchResultToExcel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KadArbitr_SearchResultToExcel"
+        mc:Ignorable="d"
+        Title="Конвертер результата Kad Arbitr" Height="280" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow">
+    <Grid>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Label Content="Введите ИНН организации:"
+                   FontSize="24"/>
+            <TextBox x:Name="TbxInput"
+                     
+                     Width="300"
+                     Height="50"
+                     FontSize="24"
+                     
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center"
+                     
+                     HorizontalAlignment="Center"/>
+            <Button x:Name="BtnSearch"
+                    
+                    Width="300"
+                    Height="90"
+                    Margin="0 16 0 0"
+                    
+                    Click="BtnSearch_Click">
+                <TextBlock x:Name="BtnText"
+                           
+                           Text="Найти и конвертировать"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           
+                           Padding="10 10 10 10"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
