@@ -199,7 +199,7 @@ namespace KadArbitr_SearchResultToExcel
                         WithVKSInstances = false
                     };
 
-                    response = await client.PostInformation(testRequest, $"{wasm}; {pr_fp}");
+                    response = await client.PostInformation(request, $"{wasm}; {pr_fp}");
 
                     // Настраиваем HTML парсер //
                     var htmlConfig = Configuration.Default;
