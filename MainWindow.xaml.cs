@@ -38,7 +38,7 @@ namespace KadArbitr_SearchResultToExcel
     /// </summary>
     public partial class MainWindow : Window
     {
-        string desktopPath, tempPath, htmlDocPath, host;
+        string desktopPath, host;
         string? wasm, pr_fp;
         string? input;
         bool RainbowText = false;
@@ -49,16 +49,7 @@ namespace KadArbitr_SearchResultToExcel
 
             desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\";
 
-            tempPath = Path.GetTempPath() + @"\KadArbitrData";
-            htmlDocPath = tempPath + @"\Result.html";
-
             host = "https://kad.arbitr.ru";
-
-            if (Directory.Exists(tempPath))
-            {
-                File.Delete(htmlDocPath);
-                Directory.Delete(tempPath);
-            }
         }
 
         private async void BtnSearch_Click(object sender, RoutedEventArgs e)
@@ -160,8 +151,6 @@ namespace KadArbitr_SearchResultToExcel
                     return;
                 }
 
-                Directory.CreateDirectory(tempPath);
-
                 BtnText.Text = "Загрузка...";
                 await Task.Delay(5000);
 
@@ -254,7 +243,6 @@ namespace KadArbitr_SearchResultToExcel
                 book.Save(desktopPath + $"{tableName}.xlsx", SaveFormat.Auto);
 
                 BtnText.Text = $"Успешно!\nСтраниц: {pagesCount}";
-                Reset();
 
                 MessageBox.Show($"Данные успешно загружены!\n\nТаблица Excel сохранена на вашем рабочем столе под именем: \"{tableName}\"\n\nДанные находятся на листе Sheet1", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
@@ -262,22 +250,13 @@ namespace KadArbitr_SearchResultToExcel
             catch (ApiException exception)
             {
                 Error($"Ошибка!\n\nСкорее всего отсутствует или неверное значение куки \"wasm\" и \"pr_fp\"\n\n{exception}");
-                Reset();
                 throw;
             }
             catch (Exception)
             {
                 Error($"Ошибка!\n\nНу... что-то пошло не так и мы точно не знаем что...");
-                Reset();
                 throw;
             }
-        }
-
-        private void Reset()
-        {
-            if (File.Exists(htmlDocPath))
-                File.Delete(htmlDocPath);
-            Directory.Delete(tempPath);
         }
 
         private void Error(string errorMsg)
