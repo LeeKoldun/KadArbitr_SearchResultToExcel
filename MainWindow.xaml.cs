@@ -1,35 +1,15 @@
-﻿using CefSharp.OffScreen;
-using CefSharp;
+﻿using AngleSharp;
+using AngleSharp.Dom;
 using Aspose.Cells;
+using CefSharp;
+using CefSharp.OffScreen;
 using Refit;
-
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Reflection.Emit;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Automation;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Runtime.CompilerServices;
-using System.Runtime.ConstrainedExecution;
-using System.Diagnostics;
-using CefSharp.DevTools.DOM;
-using AngleSharp;
-using CefSharp.DevTools.Network;
-using System.Text.RegularExpressions;
-using AngleSharp.Dom;
 
 namespace KadArbitr_SearchResultToExcel
 {
@@ -275,9 +255,9 @@ namespace KadArbitr_SearchResultToExcel
             {
                 Random rnd = new Random();
 
-                byte r = (byte) rnd.Next(0, 256);
-                byte g = (byte) rnd.Next(0, 256);
-                byte b = (byte) rnd.Next(0, 256);
+                byte r = (byte)rnd.Next(0, 256);
+                byte g = (byte)rnd.Next(0, 256);
+                byte b = (byte)rnd.Next(0, 256);
 
                 BtnText.Foreground = new SolidColorBrush(Color.FromRgb(r, g, b));
 
