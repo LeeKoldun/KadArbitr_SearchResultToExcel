@@ -34,7 +34,7 @@ namespace KadArbitr_SearchResultToExcel
 
         private async void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
-            input = TbxInput.Text.Trim().Replace("\"", "");
+            input = TbxInput.Text.Trim();
             if (input == string.Empty)
             {
                 Error("Введите данные ИНН!");
@@ -191,7 +191,16 @@ namespace KadArbitr_SearchResultToExcel
                 BtnText.Text = "Сохранение данных в формате Excel...";
                 await Task.Delay(100);
 
-                string tableName = $"КадАрбитр ({input})";
+                string formatedInput = input.Replace("\\", "")
+                                            .Replace("/", "")
+                                            .Replace(":", "")
+                                            .Replace("*", "")
+                                            .Replace("?", "")
+                                            .Replace("\"", "")
+                                            .Replace("<", "")
+                                            .Replace(">", "")
+                                            .Replace("|", "");
+                string tableName = $"КадАрбитр ({formatedInput})";
 
                 // Вставляем заголовки для данных //
                 Worksheet sheet = book.Worksheets[0];
