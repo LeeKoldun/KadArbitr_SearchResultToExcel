@@ -312,14 +312,19 @@ namespace KadArbitr_SearchResultToExcel
             int judCount = judges.Count();
 
             string judge = judges[0].InnerHtml;
-            string court = judCount > 1 ? judges[1].InnerHtml : "Суд неизвестен";
+            string court = judCount > 1 ? judges[1].InnerHtml : "Судья неизвестен";
 
             string plaintiffList = "";
 
             for (int i = 0; i < plainCount; i++)
             {
                 var pl = plaintiffs[i];
-                string name = pl.QuerySelector("strong").InnerHtml;
+                string name;
+                if (!pl.InnerHtml.Contains("<strong>"))
+                    name = "Слишком много истцов! Найдите дело для подробной информации";
+                else
+                    name = pl.QuerySelector("strong").InnerHtml;
+
 
                 plaintiffList += name;
 
@@ -331,7 +336,11 @@ namespace KadArbitr_SearchResultToExcel
             for (int i = 0; i < respCount; i++)
             {
                 var res = respondents[i];
-                string name = res.QuerySelector("strong").InnerHtml;
+                string name;
+                if (!res.InnerHtml.Contains("<strong>"))
+                    name = "Слишком много ответчиков! Найдите дело для подробной информации";
+                else
+                    name = res.QuerySelector("strong").InnerHtml;
 
                 respondentList += name;
 
